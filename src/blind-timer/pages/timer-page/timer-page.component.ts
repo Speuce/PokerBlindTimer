@@ -7,11 +7,38 @@ import { LevelService } from '../../services/level.service';
   selector: 'app-timer-page',
   template: `
     <p>timer-page works!</p>
-    <div style="min-width: 350px; min-height: 350px; max-width: 50vw; max-height: 50vw">
-      <app-timer [maxTime]="this.levelService.currentLevel?.length ?? 1" [time]="time"></app-timer>
+    <div style="width:100%">
+      <div
+        style="
+          margin: 0 auto;
+          min-width: 350px;
+          min-height: 350px;
+          max-width: 60vh;
+          max-height: 60vh;
+        "
+      >
+        <app-timer
+          [maxTime]="this.levelService.currentLevel?.length ?? 1"
+          [time]="time"
+        ></app-timer>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;" class="center-nowrap">
+      <app-toggle-pause></app-toggle-pause>
     </div>
   `,
-  styles: [],
+  styles: [
+    `
+      .center-nowrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        justify-content: center;
+      }
+    `,
+  ],
 })
 export class TimerPageComponent implements OnInit {
   time: Subject<number>;

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-timer',
   template: `
-    <p>timer works!</p>
     <div class="timer-div">
       <mat-progress-spinner strokeWidth="5" [value]="progress"> </mat-progress-spinner>
       <span style="">{{ this.displayedTime }}</span>

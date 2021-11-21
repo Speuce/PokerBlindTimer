@@ -11,9 +11,10 @@ import { LevelService } from '../../services/level.service';
         Level {{ this.levelService.currentLevel?.levelNumber }}
       </span>
     </div>
-    <div style="width:100%">
+    <div style="min-width:100%; display: inline-flex;">
       <div
         style="
+          flex-grow: 5;
           margin: 0 auto;
           min-width: 350px;
           min-height: 350px;

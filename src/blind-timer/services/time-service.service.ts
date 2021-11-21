@@ -17,5 +17,6 @@ export class TimeServiceService {
 
   stopTimer() {
     this._currentSubscription?.unsubscribe();
+    this._currentSubscription = undefined;
   }
 }

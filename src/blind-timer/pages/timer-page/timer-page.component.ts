@@ -6,7 +6,11 @@ import { LevelService } from '../../services/level.service';
 @Component({
   selector: 'app-timer-page',
   template: `
-    <p>timer-page works!</p>
+    <div style="margin: 20px 0;" class="center-nowrap">
+      <span style="font-size: 2.5em; font-weight: 450;">
+        Level {{ this.levelService.currentLevel?.levelNumber }}
+      </span>
+    </div>
     <div style="width:100%">
       <div
         style="

@@ -1,12 +1,13 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-timer',
   template: `
     <p>timer works!</p>
     <div class="timer-div">
-      <mat-progress-spinner strokeWidth="5" value="75"> </mat-progress-spinner>
-      <span style="">10:35</span>
+      <mat-progress-spinner strokeWidth="5" [value]="progress"> </mat-progress-spinner>
+      <span style="">{{ this.displayedTime }}</span>
     </div>
   `,
   styles: [
@@ -49,9 +50,19 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   ],
 })
 export class TimerComponent implements OnInit {
-  constructor(private el: ElementRef) {}
+  @Input() time!: Observable<number>;
+
+  @Input() maxTime: number = 1;
+
+  displayedTime: string = '';
+
+  progress: number = 100;
 
   ngOnInit(): void {
-    console.log(this.el.nativeElement.width);
+    this.time.subscribe((value) => {
+      const timeLeft = this.maxTime - value;
+      this.progress = (timeLeft / this.maxTime) * 100;
+      this.displayedTime = new Date(timeLeft * 1000).toISOString().substr(14, 5);
+    });
   }
 }

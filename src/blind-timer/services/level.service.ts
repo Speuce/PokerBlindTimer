@@ -16,23 +16,23 @@ export class LevelService {
         levelNumber: 1,
         smallBlind: 1,
         bigBlind: 2,
-        length: 15,
+        length: 30,
       },
       {
-        levelNumber: 1,
-        smallBlind: 1,
-        bigBlind: 2,
-        length: 10,
+        levelNumber: 2,
+        smallBlind: 2,
+        bigBlind: 4,
+        length: 60,
       },
     ];
     timeService.currentTime.subscribe((value) => {
       if (value === this._currentLevel?.length) {
-        this.nextLevel();
+        this.callNextLevel();
       }
     });
   }
 
-  nextLevel() {
+  callNextLevel() {
     this.timeService.stopTimer();
     this._currentLevel = this._levelQueue.shift();
     if (this.currentLevel) {
@@ -46,6 +46,10 @@ export class LevelService {
 
   set currentLevel(value: Level | undefined) {
     this._currentLevel = value;
+  }
+
+  nextLevel(): Level | undefined {
+    return this._levelQueue?.length > 0 ? this._levelQueue[0] : undefined;
   }
 
   addLevel(level: Level) {

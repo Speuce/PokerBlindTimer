@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { TimeServiceService } from '../../services/time-service.service';
 import { LevelService } from '../../services/level.service';

@@ -61,7 +61,7 @@ import { Level } from '../../objects/Level';
             *ngIf="levelService.levelQueue.length > 1"
             mat-icon-button
             class="trash"
-            style="margin: 0 0 0 5px; padding: 0; max-width: 24px !important;"
+            style="margin-bottom: 5px; margin-left: auto; padding: 0; max-width: 24px !important;"
             (click)="deleteLevel(i)"
           >
             <mat-icon color="grey">delete</mat-icon>

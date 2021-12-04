@@ -8,13 +8,13 @@ import { LevelService } from '../../services/level.service';
   template: `
     <button
       color="grey"
-      style="float:right; margin: 25px 50px 0 0"
+      style="float:right; z-index: 3; right: 50px; top: 40px;"
       mat-icon-button
       (click)="menuOpen.emit()"
     >
       <mat-icon style="transform: scale(2)">menu</mat-icon>
     </button>
-    <div fxLayout="column" style="min-height: 100%">
+    <div fxLayout="column" style="min-height: 100%; width: 100%">
       <div style="margin: 20px 0;" class="center-nowrap">
         <span style="font-size: 2.5em; font-weight: 450;">
           Level {{ this.levelService.currentLevelIndex + 1 }}

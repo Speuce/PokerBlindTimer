@@ -10,6 +10,11 @@ import { LevelDisplayComponent } from './components/level-display/level-display.
 import { LevelDetailCardComponent } from './components/level-detail-card/level-detail-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { FlexModule } from '@angular/flex-layout';
+import { BlindsSettingsPageComponent } from './pages/blinds-settings-page/blinds-settings-page.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,8 +23,9 @@ import { FlexModule } from '@angular/flex-layout';
     TogglePauseComponent,
     LevelDisplayComponent,
     LevelDetailCardComponent,
+    BlindsSettingsPageComponent,
   ],
-  exports: [TimerPageComponent],
+  exports: [TimerPageComponent, LevelDetailCardComponent, BlindsSettingsPageComponent],
   imports: [
     CommonModule,
     MatProgressSpinnerModule,
@@ -27,6 +33,10 @@ import { FlexModule } from '@angular/flex-layout';
     MatIconModule,
     MatCardModule,
     FlexModule,
+    DragDropModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
   ],
 })
 export class BlindTimerModule {}

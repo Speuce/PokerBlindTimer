@@ -51,10 +51,11 @@ import { LevelService } from '../../services/level.service';
       >
         <div fxFlex="grow">
           <app-level-detail-card
+            fxLayout="column"
             cardTitle="Current Level"
             [isMainLevel]="true"
             [level]="levelService.currentLevel"
-            style="height: 100%;"
+            style="height: 100%; max-height: 100%"
           ></app-level-detail-card>
         </div>
         <div fxFlex="grow">
@@ -63,7 +64,7 @@ import { LevelService } from '../../services/level.service';
             cardTitle="Next Level"
             [isMainLevel]="false"
             [level]="levelService.nextLevel()"
-            style="height: 100%"
+            style="height: 100%; max-height: 100%"
           ></app-level-detail-card>
         </div>
       </div>

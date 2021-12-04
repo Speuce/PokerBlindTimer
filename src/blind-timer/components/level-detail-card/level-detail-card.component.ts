@@ -12,13 +12,22 @@ import { Level } from '../../objects/Level';
         {{ cardTitle }}
       </mat-card-subtitle>
     </ng-template>
-    <mat-card-content style="font-weight: 600; font-size:calc(25px + 3vw); height: 80%">
-      <div style="height: 50%; top: 50%; position: absolute">
+    <mat-card-content
+      style="font-weight: 600; font-size:calc(25px + 3vw);"
+      [class.not-main-level]="!isMainLevel"
+    >
+      <div style="top: 50%; position: absolute">
         {{ this.level?.smallBlind }} / {{ this.level?.bigBlind }}
       </div>
     </mat-card-content>
   </mat-card>`,
-  styles: [],
+  styles: [
+    `
+      .not-main-level {
+        color: #b8b8b8;
+      }
+    `,
+  ],
 })
 export class LevelDetailCardComponent {
   @Input() cardTitle: string = '';

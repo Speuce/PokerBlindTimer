@@ -39,7 +39,23 @@ import { LevelService } from '../../services/level.service';
       </div>
 
       <div style="margin-top: 20px;" class="center-nowrap">
+        <button
+          mat-icon-button
+          color="grey"
+          style="align-self: center;"
+          (click)="levelService.callPreviousLevel()"
+        >
+          <mat-icon style="transform: scale(1.2)">arrow_back_ios</mat-icon>
+        </button>
         <app-toggle-pause></app-toggle-pause>
+        <button
+          mat-icon-button
+          color="grey"
+          style="align-self: center; margin-left: 4px;"
+          (click)="levelService.callNextLevel()"
+        >
+          <mat-icon style="transform: scale(1.2)">arrow_forward_ios</mat-icon>
+        </button>
       </div>
       <div
         fxFlex="grow"

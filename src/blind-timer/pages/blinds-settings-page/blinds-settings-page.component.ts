@@ -10,7 +10,7 @@ import { Level } from '../../objects/Level';
       mat-icon-button
       color="grey"
       style="float:right; margin: 10px 50px 0 0 "
-      (click)="closeEvent.emit()"
+      (click)="levelService.updateLevelQueueStorage(); closeEvent.emit()"
     >
       <mat-icon style="transform: scale(2)">close</mat-icon>
     </button>
@@ -169,6 +169,7 @@ export class BlindsSettingsPageComponent {
 
   drop(event: CdkDragDrop<Level>) {
     moveItemInArray(this.levelService.levelQueue, event.previousIndex, event.currentIndex);
+    this.levelService.updateLevelQueueStorage();
   }
 
   selectLevel(index: number) {
@@ -182,7 +183,7 @@ export class BlindsSettingsPageComponent {
     this.levelService.addLevel({
       smallBlind: newSb,
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      bigBlind: round(newSb * 2),
+      bigBlind: newSb * 2,
       length: lastLevel.length,
     });
   }

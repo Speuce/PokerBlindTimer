@@ -1,4 +1,4 @@
-<app-timer-page *ngIf="timerPage; else settings"></app-timer-page>
+<app-timer-page *ngIf="timerPage; else settings" (menuOpen)="timerPage = false"></app-timer-page>
 <ng-template #settings>
   <app-blinds-settings-page (closeEvent)="timerPage = true"></app-blinds-settings-page>
 </ng-template>

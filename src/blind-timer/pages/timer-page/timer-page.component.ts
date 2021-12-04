@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { TimeServiceService } from '../../services/time-service.service';
 import { LevelService } from '../../services/level.service';
@@ -6,6 +6,14 @@ import { LevelService } from '../../services/level.service';
 @Component({
   selector: 'app-timer-page',
   template: `
+    <button
+      color="grey"
+      style="float:right; margin: 25px 50px 0 0"
+      mat-icon-button
+      (click)="menuOpen.emit()"
+    >
+      <mat-icon style="transform: scale(2)">menu</mat-icon>
+    </button>
     <div fxLayout="column" style="min-height: 100%">
       <div style="margin: 20px 0;" class="center-nowrap">
         <span style="font-size: 2.5em; font-weight: 450;">
@@ -78,17 +86,19 @@ import { LevelService } from '../../services/level.service';
         width: 100%;
         justify-content: center;
       }
+
+      .mat-grey {
+        color: #b8b8b8;
+      }
     `,
   ],
 })
-export class TimerPageComponent implements OnInit {
+export class TimerPageComponent {
+  @Output() menuOpen: EventEmitter<void> = new EventEmitter<void>();
+
   time: Subject<number>;
 
   constructor(protected timeService: TimeServiceService, public levelService: LevelService) {
     this.time = timeService.currentTime;
-  }
-
-  ngOnInit(): void {
-    this.levelService.callNextLevel();
   }
 }

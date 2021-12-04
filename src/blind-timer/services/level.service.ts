@@ -8,7 +8,7 @@ import { Level } from '../objects/Level';
 export class LevelService {
   private _currentLevel: Level | undefined;
 
-  private _currentLevelIndex: number = 0;
+  private _currentLevelIndex: number;
 
   private _levelQueue: Level[];
 
@@ -22,6 +22,8 @@ export class LevelService {
     ];
     // eslint-disable-next-line prefer-destructuring
     this._currentLevel = this._levelQueue[0];
+    this._currentLevelIndex = 0;
+    timeService.startTimer(this._currentLevel.length * 60);
     timeService.currentTime.subscribe((value) => {
       if (value === this._currentLevel?.length) {
         this.callNextLevel();

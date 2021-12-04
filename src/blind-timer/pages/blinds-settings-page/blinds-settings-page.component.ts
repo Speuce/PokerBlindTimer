@@ -6,13 +6,18 @@ import { Level } from '../../objects/Level';
 @Component({
   selector: 'app-blinds-settings-page',
   template: `
+    <button
+      mat-icon-button
+      color="grey"
+      style="float:right; margin: 10px 50px 0 0 "
+      (click)="closeEvent.emit()"
+    >
+      <mat-icon style="transform: scale(2)">close</mat-icon>
+    </button>
     <div
-      style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; margin: 25px 7vw; align-items: flex-start;"
+      style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: center; margin: 25px 7vw; align-items: flex-start;"
     >
       <h1>Levels</h1>
-      <button mat-icon-button color="grey" (click)="closeEvent.emit()">
-        <mat-icon style="transform: scale(2)">close</mat-icon>
-      </button>
     </div>
     <div style="padding: 0 15px;">
       <div cdkDropList class="level-list" (cdkDropListDropped)="drop($event)">

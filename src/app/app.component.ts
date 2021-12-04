@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  timerPage: boolean = false;
+  timerPage: boolean = true;
 }

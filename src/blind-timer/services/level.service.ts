@@ -61,7 +61,9 @@ export class LevelService {
   }
 
   nextLevel(): Level | undefined {
-    return this._levelQueue?.length > 0 ? this._levelQueue[0] : undefined;
+    return this._levelQueue.length > this._currentLevelIndex + 2
+      ? this._levelQueue[this._currentLevelIndex + 1]
+      : undefined;
   }
 
   addLevel(level: Level) {

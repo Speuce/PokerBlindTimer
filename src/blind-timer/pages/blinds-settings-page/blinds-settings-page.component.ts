@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LevelService } from '../../services/level.service';
 import { Level } from '../../objects/Level';
@@ -10,7 +10,7 @@ import { Level } from '../../objects/Level';
       style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; margin: 25px 7vw; align-items: flex-start;"
     >
       <h1>Levels</h1>
-      <button mat-icon-button color="grey">
+      <button mat-icon-button color="grey" (click)="closeEvent.emit()">
         <mat-icon style="transform: scale(2)">close</mat-icon>
       </button>
     </div>
@@ -157,10 +157,10 @@ import { Level } from '../../objects/Level';
     `,
   ],
 })
-export class BlindsSettingsPageComponent implements OnInit {
-  constructor(public levelService: LevelService) {}
+export class BlindsSettingsPageComponent {
+  @Output() closeEvent = new EventEmitter<void>();
 
-  ngOnInit(): void {}
+  constructor(public levelService: LevelService) {}
 
   drop(event: CdkDragDrop<Level>) {
     moveItemInArray(this.levelService.levelQueue, event.previousIndex, event.currentIndex);

@@ -24,7 +24,7 @@ import { LevelService } from '../../services/level.service';
         "
         >
           <app-timer
-            [maxTime]="this.levelService.currentLevel?.length ?? 1"
+            [maxTime]="(this.levelService.currentLevel?.length ?? 1) * 60"
             [time]="time"
           ></app-timer>
         </div>

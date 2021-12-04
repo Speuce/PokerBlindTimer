@@ -9,7 +9,7 @@ import { LevelService } from '../../services/level.service';
     <div fxLayout="column" style="min-height: 100%">
       <div style="margin: 20px 0;" class="center-nowrap">
         <span style="font-size: 2.5em; font-weight: 450;">
-          Level {{ this.levelService.currentLevel?.levelNumber }}
+          Level {{ this.levelService.currentLevelIndex + 1 }}
         </span>
       </div>
       <div style="min-width:100%; display: inline-flex;">

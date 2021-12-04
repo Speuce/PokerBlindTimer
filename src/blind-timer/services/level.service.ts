@@ -8,23 +8,20 @@ import { Level } from '../objects/Level';
 export class LevelService {
   private _currentLevel: Level | undefined;
 
+  private _currentLevelIndex: number = 0;
+
   private _levelQueue: Level[];
 
   constructor(protected timeService: TimeServiceService) {
     this._levelQueue = [
       {
-        levelNumber: 1,
-        smallBlind: 1,
-        bigBlind: 2,
-        length: 30,
-      },
-      {
-        levelNumber: 2,
-        smallBlind: 2,
-        bigBlind: 4,
-        length: 60,
+        smallBlind: 5,
+        bigBlind: 10,
+        length: 12,
       },
     ];
+    // eslint-disable-next-line prefer-destructuring
+    this._currentLevel = this._levelQueue[0];
     timeService.currentTime.subscribe((value) => {
       if (value === this._currentLevel?.length) {
         this.callNextLevel();
@@ -34,9 +31,10 @@ export class LevelService {
 
   callNextLevel() {
     this.timeService.stopTimer();
-    this._currentLevel = this._levelQueue.shift();
+    this._currentLevelIndex += 1;
+    this._currentLevel = this._levelQueue[this._currentLevelIndex];
     if (this.currentLevel) {
-      this.timeService.startTimer(this.currentLevel.length);
+      this.timeService.startTimer(this.currentLevel.length * 60);
     }
   }
 
@@ -44,8 +42,20 @@ export class LevelService {
     return this._currentLevel;
   }
 
-  set currentLevel(value: Level | undefined) {
-    this._currentLevel = value;
+  get levelQueue(): Level[] {
+    return this._levelQueue;
+  }
+
+  // set currentLevel(value: Level | undefined) {
+  //   this._currentLevel = value;
+  // }
+  set currentLevelIndex(value: number) {
+    this._currentLevelIndex = value;
+    this._currentLevel = this._levelQueue[value];
+  }
+
+  get currentLevelIndex(): number {
+    return this._currentLevelIndex;
   }
 
   nextLevel(): Level | undefined {
@@ -58,11 +68,15 @@ export class LevelService {
 
   removeLevel(index: number) {
     this._levelQueue.splice(index, 1);
+    if (index === this.currentLevelIndex) {
+      this.currentLevelIndex = Math.max(0, index - 1);
+    }
   }
 
   clearLevels() {
     this._levelQueue = [];
-    this.currentLevel = undefined;
+    this._currentLevel = undefined;
+    this._currentLevelIndex = 0;
   }
 
   set levelQueue(value: Level[]) {
